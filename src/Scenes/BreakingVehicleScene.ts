@@ -1,12 +1,12 @@
 import * as TF from '@tensorflow/tfjs';
-import {AIVehicle} from "../Objects/AIVehicle";
+import {Rocket} from "../Objects/Rocket";
 import {Layer} from '@tensorflow/tfjs-layers/dist/engine/topology';
 import {DefaultScene} from "./DefaultScene";
 
 export class BreakingVehicleScene extends DefaultScene {
     static readonly KEY: string = "BreakingVehicleScene";
 
-    vehicle: AIVehicle;
+    vehicle: Rocket;
     goal: Phaser.GameObjects.Arc;
 
     public create(): void {
@@ -14,7 +14,7 @@ export class BreakingVehicleScene extends DefaultScene {
 
         this.titleText.setText('Breaking Vehicle');
 
-        const vehicle = new AIVehicle(this, 32, 16);
+        const vehicle = new Rocket(this, 128, 128);
         vehicle.x = 200;
         vehicle.y = 360;
         this.physics.add.existing(vehicle);

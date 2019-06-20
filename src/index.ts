@@ -4,7 +4,7 @@ import "reflect-metadata";
 
 import * as TF from '@tensorflow/tfjs';
 import {Layer} from '@tensorflow/tfjs-layers/dist/exports_layers';
-import {AIVehicle} from "./Objects/AIVehicle";
+import {Rocket} from "./Objects/Rocket";
 
 import {App} from "./App";
 

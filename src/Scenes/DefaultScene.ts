@@ -16,10 +16,14 @@ export class DefaultScene extends Phaser.Scene {
 
     preload(): void {
         this.load.image(Assets.ROCKET, AssetsPaths.ROCKET);
+        this.load.image(Assets.AIM, AssetsPaths.AIM);
+        this.load.image(Assets.SKY, AssetsPaths.SKY);
     }
 
     create(): void {
-        this.infoText = this.add.text(0, 0, "Info");
+        const background = this.add.sprite(0, 0, Assets.SKY);
+        background.setDisplaySize(1024, 720);
+        background.setOrigin(0, 0);
 
         this.previousText = new TextButton(this, 512 - 50, 700, "Previous", {}, () => {
             this.events.emit(UIEvent.BUTTON_CLICK, UIEvents.BUTTON_PREVIOUS);
@@ -31,6 +35,7 @@ export class DefaultScene extends Phaser.Scene {
         });
         this.add.existing(this.nextText);
 
+        this.infoText = this.add.text(0, 0, "Info");
         this.titleText = this.add.text(512, 0, "Title", {align: 'center'});
     }
 }

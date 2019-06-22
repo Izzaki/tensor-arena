@@ -2,27 +2,30 @@ import * as TF from '@tensorflow/tfjs';
 import {Rocket} from "../Objects/Rocket";
 import {Layer} from '@tensorflow/tfjs-layers/dist/engine/topology';
 import {DefaultScene} from './DefaultScene';
+import {Aim} from "../Objects/Aim";
 
-export class VehiclesScene extends DefaultScene {
-    static readonly KEY: string = "VehiclesScene";
+export class RocketToBouncingAim extends DefaultScene {
+    static readonly KEY: string = "RocketToBouncingAim";
 
     vehicle: Rocket;
-    goal: Phaser.GameObjects.Arc;
+    goal: Aim;
 
     public create(): void {
         super.create();
 
-        this.titleText.setText('Vehicles');
+        this.titleText.setText('Rocket To Bouncing Aim');
 
-        const vehicle = new Rocket(this, 64, 64);
-        this.physics.add.existing(vehicle);
-        vehicle.x = 200;
-        vehicle.y = 700;
-        vehicle.setAngle(-90);
-        this.add.existing(vehicle);
-        this.vehicle = vehicle;
+        this.vehicle = new Rocket(this, 64, 64);
+        this.vehicle.x = 200;
+        this.vehicle.y = 700;
+        this.vehicle.setAngle(-90);
+        this.add.existing(this.vehicle);
+        this.physics.add.existing(this.vehicle);
 
-        this.goal = this.add.circle(700, 360, 10, 0xFFFF00);
+        this.goal = new Aim(this, 48, 48);
+        this.goal.x = 700;
+        this.goal.y = 200;
+        this.add.existing(this.goal);
         this.physics.add.existing(this.goal);
 
         const vehicleBody = this.vehicle.body as Phaser.Physics.Arcade.Body;
@@ -108,7 +111,7 @@ export class VehiclesScene extends DefaultScene {
                     const predictedAngle = outputs[0] * 360 - 180;
 
                     const angle = this.vehicle.angle + predictedAngle / 20;
-                    this.physics.velocityFromAngle(angle, 200, vehicleBody.velocity);
+                    this.physics.velocityFromAngle(angle, 300, vehicleBody.velocity);
                     this.vehicle.angle = angle;
 
                     this.infoText.setText([

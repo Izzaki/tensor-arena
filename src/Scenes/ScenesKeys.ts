@@ -1,7 +1,7 @@
-import {VehiclesScene} from "./VehiclesScene";
-import {BreakingVehicleScene} from "./BreakingVehicleScene";
+import {RocketToBouncingAim} from "./RocketToBouncingAim";
+import {Scene2} from "./Scene2";
 
 export const scenesKeys: Array<string> = [
-    VehiclesScene.KEY,
-    BreakingVehicleScene.KEY
+    RocketToBouncingAim.KEY,
+    Scene2.KEY
 ];

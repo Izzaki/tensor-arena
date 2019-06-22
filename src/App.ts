@@ -1,8 +1,8 @@
 import {Context, IContext, IEventDispatcher, MVCSBundle, inject} from "@robotlegsjs/core";
 import {ContextSceneManager, PhaserBundle} from "@robotlegsjs/phaser";
-import {VehiclesScene} from "./Scenes/VehiclesScene";
+import {RocketToBouncingAim} from "./Scenes/RocketToBouncingAim";
 import {AppConfig} from "./AppConfig";
-import {BreakingVehicleScene} from "./Scenes/BreakingVehicleScene";
+import {Scene2} from "./Scenes/Scene2";
 
 export class App extends Phaser.Game {
     private _context: IContext;
@@ -37,12 +37,12 @@ export class App extends Phaser.Game {
             .initialize();
 
         // this.scene.add(LoadScene.KEY, new LoadScene());
-        this.scene.add(BreakingVehicleScene.KEY, new BreakingVehicleScene());
-        this.scene.add(VehiclesScene.KEY, new VehiclesScene());
+        this.scene.add(Scene2.KEY, new Scene2());
+        this.scene.add(RocketToBouncingAim.KEY, new RocketToBouncingAim());
         // this.scene.add(SceneKey.MAIN, new Main());
 
         // this.scene.start(BreakingVehicleScene.KEY);
         this.scene.stop('default');
-        this.scene.start(VehiclesScene.KEY);
+        this.scene.start(RocketToBouncingAim.KEY);
     }
 }

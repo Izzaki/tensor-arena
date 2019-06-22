@@ -1,6 +1,6 @@
 import {ICommand, inject, injectable} from "@robotlegsjs/core";
 import {IContextSceneManager} from "@robotlegsjs/phaser";
-import {BreakingVehicleScene} from "../Scenes/BreakingVehicleScene";
+import {scenesKeys} from "../Scenes/ScenesKeys";
 
 @injectable()
 export class NextSceneCommand implements ICommand {
@@ -9,11 +9,18 @@ export class NextSceneCommand implements ICommand {
     public contextSceneManager: IContextSceneManager;
 
     execute() {
-        this.contextSceneManager.sceneManager.scenes.forEach((scene: Phaser.Scene) => {
-            if (this.contextSceneManager.sceneManager.isActive(scene.scene.key)) {
-                this.contextSceneManager.sceneManager.stop(scene.scene.key);
+        scenesKeys.forEach((sceneKey: string) => {
+            if (this.contextSceneManager.sceneManager.isActive(sceneKey)) {
+
+                const previousSceneKeyIndex = scenesKeys.indexOf(sceneKey) + 1;
+                const previousSceneKey = scenesKeys[previousSceneKeyIndex];
+
+                if (previousSceneKey) {
+                    this.contextSceneManager.sceneManager.stop(sceneKey);
+                    this.contextSceneManager.sceneManager.start(previousSceneKey);
+                    return;
+                }
             }
         });
-        this.contextSceneManager.sceneManager.start(BreakingVehicleScene.KEY);
     }
 }

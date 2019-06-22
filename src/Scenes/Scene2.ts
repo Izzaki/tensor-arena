@@ -3,8 +3,8 @@ import {Rocket} from "../Objects/Rocket";
 import {Layer} from '@tensorflow/tfjs-layers/dist/engine/topology';
 import {DefaultScene} from "./DefaultScene";
 
-export class BreakingVehicleScene extends DefaultScene {
-    static readonly KEY: string = "BreakingVehicleScene";
+export class Scene2 extends DefaultScene {
+    static readonly KEY: string = "Scene2";
 
     vehicle: Rocket;
     goal: Phaser.GameObjects.Arc;

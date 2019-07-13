@@ -3,6 +3,7 @@ import {ContextSceneManager, PhaserBundle} from "@robotlegsjs/phaser";
 import {RocketToBouncingAim} from "./Scenes/RocketToBouncingAim";
 import {AppConfig} from "./AppConfig";
 import {Scene2} from "./Scenes/Scene2";
+import {Config} from "./Configs/Config";
 
 export class App extends Phaser.Game {
     private _context: IContext;
@@ -13,8 +14,8 @@ export class App extends Phaser.Game {
     constructor() {
         super({
             type: Phaser.AUTO,
-            width: 1024,
-            height: 720,
+            width: Config.WIDTH,
+            height: Config.HEIGHT,
             backgroundColor: '#505050',
             // parent: 'tensor-arena',
             physics: {

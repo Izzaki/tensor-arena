@@ -97,8 +97,9 @@ export class RocketToBouncingAim extends DefaultScene {
         };
 
         const fitPromise: Promise<TF.History> = sequentialModel.fit(trainInputTensor2d, trainTensor2d, fitConfig);
-
+        //
         fitPromise.then((history: TF.History) => {
+            this.hideLoader();
             this.time.addEvent({
                 loop: true,
                 delay: 30,

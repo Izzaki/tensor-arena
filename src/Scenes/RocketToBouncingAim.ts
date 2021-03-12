@@ -3,33 +3,41 @@ import {Rocket} from "../Objects/Rocket";
 import {Layer} from '@tensorflow/tfjs-layers/dist/engine/topology';
 import {DefaultScene} from './DefaultScene';
 import {Aim} from "../Objects/Aim";
+import {generate} from "../Utilities/Generate";
+import {Config} from "../Configs/Config";
+import {Assets} from "../Assets/Assets";
 
 export class RocketToBouncingAim extends DefaultScene {
-    static readonly KEY: string = "RocketToBouncingAim";
+
+    @generate
+    static readonly KEY: string;
 
     vehicle: Rocket;
-    goal: Aim;
+    aim: Aim;
 
     public create(): void {
-        super.create();
+        super.create('Rocket To Bouncing Aim');
 
-        this.titleText.setText('Rocket To Bouncing Aim');
+        const background = this.add.sprite(0, 0, Assets.SKY)
+            .setDisplaySize(Config.WIDTH, Config.HEIGHT)
+            .setOrigin(0, 0)
+            .setDepth(-1);
 
         this.vehicle = new Rocket(this, 64, 64);
-        this.vehicle.x = 200;
+        this.vehicle.x = Config.WIDTH / 2;
         this.vehicle.y = 700;
         this.vehicle.setAngle(-90);
         this.add.existing(this.vehicle);
         this.physics.add.existing(this.vehicle);
 
-        this.goal = new Aim(this, 48, 48);
-        this.goal.x = 700;
-        this.goal.y = 200;
-        this.add.existing(this.goal);
-        this.physics.add.existing(this.goal);
+        this.aim = new Aim(this, 48, 48);
+        this.aim.x = Config.WIDTH / 2;
+        this.aim.y = 200;
+        this.add.existing(this.aim);
+        this.physics.add.existing(this.aim);
 
         const vehicleBody = this.vehicle.body as Phaser.Physics.Arcade.Body;
-        const goalBody = this.goal.body as Phaser.Physics.Arcade.Body;
+        const goalBody = this.aim.body as Phaser.Physics.Arcade.Body;
 
         goalBody.setGravityY(100);
         goalBody.setBounceY(1);

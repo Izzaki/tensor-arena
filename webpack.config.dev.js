@@ -20,7 +20,7 @@ module.exports = {
 
     resolve: {extensions: [".ts", ".js"]},
 
-    devtool: 'eval-source-map',
+    devtool: false, // source maps are so slow to recompile :/
 
     devServer: {
         contentBase: path.join(__dirname, 'preview/'),

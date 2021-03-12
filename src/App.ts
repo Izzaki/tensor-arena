@@ -1,9 +1,9 @@
-import {Context, IContext, IEventDispatcher, MVCSBundle, inject} from "@robotlegsjs/core";
+import {Context, IContext, IEventDispatcher, inject, MVCSBundle} from "@robotlegsjs/core";
 import {ContextSceneManager, PhaserBundle} from "@robotlegsjs/phaser";
 import {RocketToBouncingAim} from "./Scenes/RocketToBouncingAim";
 import {AppConfig} from "./AppConfig";
-import {Scene2} from "./Scenes/Scene2";
 import {Config} from "./Configs/Config";
+import {VisualiserScene} from "./Scenes/VisualiserScene";
 
 export class App extends Phaser.Game {
     private _context: IContext;
@@ -14,19 +14,17 @@ export class App extends Phaser.Game {
     constructor() {
         super({
             type: Phaser.AUTO,
-            width: Config.WIDTH,
-            height: Config.HEIGHT,
-            backgroundColor: '#505050',
+            transparent: false,
             // parent: 'tensor-arena',
             physics: {
                 default: 'arcade'
             },
-            scene: {
-                create: () => {
-                    this.canvas.style.width = '100%';
-                    this.canvas.style.height = '100%';
-                    this.canvas.style.objectFit = 'contain';
-                }
+            scale: {
+                // mode: Phaser.Scale.RESIZE
+                mode: Phaser.Scale.FIT,
+                width: Config.WIDTH,
+                height: Config.HEIGHT,
+                zoom: 1,
             }
         });
 
@@ -38,12 +36,8 @@ export class App extends Phaser.Game {
             .initialize();
 
         // this.scene.add(LoadScene.KEY, new LoadScene());
-        this.scene.add(Scene2.KEY, new Scene2());
+        this.scene.add(VisualiserScene.KEY, new VisualiserScene());
         this.scene.add(RocketToBouncingAim.KEY, new RocketToBouncingAim());
-        // this.scene.add(SceneKey.MAIN, new Main());
-
-        // this.scene.start(BreakingVehicleScene.KEY);
-        this.scene.stop('default');
         this.scene.start(RocketToBouncingAim.KEY);
     }
 }

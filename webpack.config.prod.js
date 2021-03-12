@@ -7,7 +7,7 @@ module.exports = {
 
     output: {
         filename: 'tensor-arena.js',
-        path: path.resolve('dist/')
+        path: path.resolve('public/')
     },
 
     module: {

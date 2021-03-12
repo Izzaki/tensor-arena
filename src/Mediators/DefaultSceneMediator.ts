@@ -5,6 +5,7 @@ import {UIEvent, UIEvents} from "../Events/UIEvent";
 
 @injectable()
 export class DefaultSceneMediator extends SceneMediator<DefaultScene> {
+    
     public initialize(): void {
         this.scene.events.on(UIEvent.BUTTON_CLICK, this._onButtonClick, this);
     }

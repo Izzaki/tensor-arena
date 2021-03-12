@@ -1,7 +1,7 @@
 import {RocketToBouncingAim} from "./RocketToBouncingAim";
-import {Scene2} from "./Scene2";
+import {VisualiserScene} from "./VisualiserScene";
 
 export const scenesKeys: Array<string> = [
     RocketToBouncingAim.KEY,
-    Scene2.KEY
+    VisualiserScene.KEY,
 ];

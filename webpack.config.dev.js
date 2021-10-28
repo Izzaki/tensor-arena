@@ -23,6 +23,5 @@ module.exports = {
     devtool: false, // source maps are so slow to recompile :/
 
     devServer: {
-        contentBase: path.join(__dirname, 'preview/'),
     }
 };

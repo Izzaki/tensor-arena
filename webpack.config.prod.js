@@ -28,6 +28,5 @@ module.exports = {
     resolve: {extensions: [".ts", ".js"]},
 
     devServer: {
-        contentBase: path.join(__dirname, 'preview/'),
     }
 };

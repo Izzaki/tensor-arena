@@ -1,19 +1,15 @@
 import * as TF from '@tensorflow/tfjs';
-import {Rocket} from "../Objects/Rocket";
+import {Rocket} from "../../Views/Rocket";
 import {Layer} from '@tensorflow/tfjs-layers/dist/engine/topology';
-import {DefaultScene} from './DefaultScene';
-import {Aim} from "../Objects/Aim";
-import {generate} from "../Utilities/Generate";
-import {Config} from "../Configs/Config";
-import {Assets} from "../Assets/Assets";
+import {DefaultScene} from '../DefaultScene';
+import {Aim} from "../../Views/Aim";
+import {Config} from "../../Configs/Config";
+import {Assets} from "../../Assets/Assets";
 
 export class RocketToBouncingAim extends DefaultScene {
 
-    @generate
-    static readonly KEY: string;
-
-    vehicle: Rocket;
-    aim: Aim;
+    vehicle: Phaser.GameObjects.Container;
+    aim: Phaser.GameObjects.Container;
 
     public create(): void {
         super.create('Rocket To Bouncing Aim');
@@ -24,7 +20,7 @@ export class RocketToBouncingAim extends DefaultScene {
             .setDepth(-1);
 
         this.vehicle = new Rocket(this, 64, 64);
-        this.vehicle.x = Config.WIDTH / 2;
+        this.vehicle.x = 50;
         this.vehicle.y = 700;
         this.vehicle.setAngle(-90);
         this.add.existing(this.vehicle);
@@ -132,9 +128,5 @@ export class RocketToBouncingAim extends DefaultScene {
                 }
             });
         });
-    }
-
-    public update(): void {
-
     }
 }

@@ -1,6 +1,7 @@
 import {Event} from "@robotlegsjs/core";
 
 export class UIEvent extends Event {
+
     static BUTTON_CLICK: string = 'button-clicked';
 
     constructor(type: string, data?: UIEvents) {

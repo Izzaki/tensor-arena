@@ -1,5 +1,5 @@
 import {Assets, AssetsPaths} from "../Assets/Assets";
-import {TextButton} from "../Objects/TextButton";
+import {TextButton} from "../Views/TextButton";
 import {UIEvent, UIEvents} from "../Events/UIEvent";
 import {Config} from "../Configs/Config";
 import {generate} from "../Utilities/Generate";
@@ -45,12 +45,14 @@ export class DefaultScene extends Phaser.Scene {
         });
 
         this.infoText = this.add.text(Config.UI_PADDING, Config.UI_PADDING, "Info");
+
         this.titleText = this.add.text(Config.WIDTH / 2, Config.UI_PADDING, "Title", {align: 'center', fontSize: Config.UI_FONTSIZE.toString() + 'px'});
 
         this.loader = this.add.container(0, 0, [
             this.add.rectangle(0, 0, Config.WIDTH, Config.HEIGHT, 0x000000, 0.5).setOrigin(0, 0),
             this.add.text(Config.WIDTH / 2, Config.HEIGHT / 2, 'Loading...', {fontSize: '64px'}).setOrigin(0.5, 0.5)
         ]);
+        this.loader.setVisible(false);
 
         this.titleText.setText(title);
     }

@@ -1,6 +1,6 @@
 import {ICommand, injectable, inject} from "@robotlegsjs/core";
 import {IContextSceneManager} from "@robotlegsjs/phaser";
-import {scenesKeys} from "../Scenes/ScenesKeys";
+import {ScenesModel} from "../Models/ScenesModel";
 
 @injectable()
 export class PreviousSceneCommand implements ICommand {
@@ -8,19 +8,15 @@ export class PreviousSceneCommand implements ICommand {
     @inject(IContextSceneManager)
     public contextSceneManager: IContextSceneManager;
 
+    @inject(ScenesModel)
+    public scenesModel: ScenesModel;
+
     execute() {
-        scenesKeys.forEach((sceneKey: string) => {
-            if (this.contextSceneManager.sceneManager.isActive(sceneKey)) {
-
-                const previousSceneKeyIndex = scenesKeys.indexOf(sceneKey) - 1;
-                const previousSceneKey = scenesKeys[previousSceneKeyIndex];
-
-                if (previousSceneKey) {
-                    this.contextSceneManager.sceneManager.stop(sceneKey);
-                    this.contextSceneManager.sceneManager.start(previousSceneKey);
-                    return;
-                }
-            }
-        });
+        const previousScene: Phaser.Scene = this.scenesModel.scenes[this.scenesModel.currentSceneIndex - 1];
+        if (previousScene) {
+            this.contextSceneManager.sceneManager.stop(this.scenesModel.currentScene);
+            this.contextSceneManager.sceneManager.start(previousScene);
+            this.scenesModel.setScene(previousScene);
+        }
     }
 }

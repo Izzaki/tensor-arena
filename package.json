@@ -24,7 +24,8 @@
     "@robotlegsjs/phaser": "^3.0.0",
     "@tensorflow/tfjs": "^1.7.4",
     "phaser": "^3.50.1",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "soundcloud": "^3.3.2"
   },
   "devDependencies": {
     "ts-loader": "^8.0.14",

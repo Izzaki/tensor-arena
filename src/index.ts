@@ -1,6 +1,6 @@
 /// <reference path="../node_modules/phaser/types/phaser.d.ts"/>
-const Phaser = require('phaser');
 import "reflect-metadata";
+import "phaser";
 import {App} from "./App";
 
-const tensorArena = new App();
+const app = new App();

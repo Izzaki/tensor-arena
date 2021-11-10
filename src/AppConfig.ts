@@ -8,6 +8,8 @@ import {PreviousSceneCommand} from "./Commands/PreviousSceneCommand";
 import {NextSceneCommand} from "./Commands/NextSceneCommand";
 import {ScenesModel} from "./Models/ScenesModel";
 import {ScenesConfig} from "./Configs/Scenes";
+import {LoaderScene} from "./Scenes/LoaderScene";
+import {LoaderSceneMediator} from "./Mediators/LoaderSceneMediator";
 
 @injectable()
 export class AppConfig implements IConfig {
@@ -36,6 +38,7 @@ export class AppConfig implements IConfig {
 
     private _configureMediators(): void {
         this.sceneMediatorMap.map(DefaultScene).toMediator(DefaultSceneMediator);
+        this.sceneMediatorMap.map(LoaderScene).toMediator(LoaderSceneMediator);
     }
 
     private _configureCommands(): void {
@@ -55,8 +58,7 @@ export class AppConfig implements IConfig {
             this.contextSceneManager.sceneManager.add(index.toString(), scene);
         });
 
-        const firstScene = scenesModel.scenes[0];
-        this.contextSceneManager.sceneManager.start("0");
-        scenesModel.setScene(firstScene);
+        this.contextSceneManager.sceneManager.add(LoaderScene.KEY, new LoaderScene({}));
+        this.contextSceneManager.sceneManager.start(LoaderScene.KEY);
     }
 }

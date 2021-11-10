@@ -4,7 +4,7 @@ import {Config} from "../../Configs/Config";
 import {Equaliser} from "../../Views/Equaliser";
 import WebAudioSoundManager = Phaser.Sound.WebAudioSoundManager;
 
-export class VisualiserScene extends DefaultScene {
+export class MusicVisualiserScene extends DefaultScene {
 
     protected _analyser: AnalyserNode;
     protected _frequencyData: Uint8Array;

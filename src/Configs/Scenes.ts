@@ -1,12 +1,12 @@
-import {VisualiserScene} from "../Scenes/Scenes/VisualiserScene";
+import {MusicVisualiserScene} from "../Scenes/Scenes/MusicVisualiserScene";
 import {RocketToBouncingAimScene} from "../Scenes/Scenes/RocketToBouncingAimScene";
 import {IClass} from "@robotlegsjs/core";
-import {ImageTextGuesser} from "../Scenes/Scenes/ImageTextGuesser";
+import {ImageTextRecognizer} from "../Scenes/Scenes/ImageTextRecognizer";
 
 const scenes: Array<IClass<Phaser.Scene>> = [
-    ImageTextGuesser,
     RocketToBouncingAimScene,
-    VisualiserScene,
+    MusicVisualiserScene,
+    // ImageTextRecognizer,
 ];
 
 export abstract class ScenesConfig {

@@ -1,9 +1,11 @@
 import {VisualiserScene} from "../Scenes/Scenes/VisualiserScene";
-import {RocketToBouncingAim} from "../Scenes/Scenes/RocketToBouncingAim";
+import {RocketToBouncingAimScene} from "../Scenes/Scenes/RocketToBouncingAimScene";
 import {IClass} from "@robotlegsjs/core";
+import {ImageTextGuesser} from "../Scenes/Scenes/ImageTextGuesser";
 
 const scenes: Array<IClass<Phaser.Scene>> = [
-    RocketToBouncingAim,
+    ImageTextGuesser,
+    RocketToBouncingAimScene,
     VisualiserScene,
 ];
 

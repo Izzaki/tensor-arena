@@ -35,7 +35,7 @@ export class RocketToBouncingAimScene extends DefaultScene {
         });
 
         await this.aiComponent.teach({
-            epochs: 200,
+            epochs: 25,
         }, [
             [360],
             [270],

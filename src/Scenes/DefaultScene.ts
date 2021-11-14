@@ -2,6 +2,7 @@ import {generate} from "../Utilities/Generate";
 import {AIComponent} from "../Components/IAIComponent";
 import {DefaultUIView} from "../RootViews/DefaultUIView";
 import {ThreadedTensorComponent} from "../Components/ThreadedTensorComponent";
+import {TensorComponent} from "../Components/TensorComponent";
 
 export class DefaultScene extends Phaser.Scene {
 

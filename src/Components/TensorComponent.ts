@@ -27,7 +27,7 @@ export class TensorComponent implements AIComponent {
         });
         sequentialModel.add(outputLayer);
 
-        const sgdOptimizer: TF.Optimizer = TF.train.adam(0.1);
+        const sgdOptimizer: TF.Optimizer = TF.train.adam(0.3);
         sequentialModel.compile({
             optimizer: sgdOptimizer,
             loss: TF.losses.meanSquaredError

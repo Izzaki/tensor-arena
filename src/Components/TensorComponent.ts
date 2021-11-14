@@ -4,7 +4,7 @@ import {TensorLike2D} from '@tensorflow/tfjs-core/dist/types';
 import * as TF from "@tensorflow/tfjs";
 
 
-export class AITensorComponent implements AIComponent {
+export class TensorComponent implements AIComponent {
 
     protected sequentialModel;
 

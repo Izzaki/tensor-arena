@@ -3,11 +3,13 @@ const path = require('path');
 module.exports = {
     mode: 'production',
 
-    entry: './src/index.ts',
+    entry: {
+        TensorComponentWorker: './src/Workers/Standalone/TensorComponentWorker.ts', // TODO: output every standalone worker.
+        TensorArena: './src/index.ts',
+    },
 
     output: {
-        filename: 'tensor-arena.js',
-        path: path.resolve('public/')
+        filename: '[name].js',
     },
 
     module: {

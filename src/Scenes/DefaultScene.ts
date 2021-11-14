@@ -1,7 +1,7 @@
 import {generate} from "../Utilities/Generate";
 import {AIComponent} from "../Components/IAIComponent";
-import {AITensorComponent} from "../Components/AITensorComponent";
 import {DefaultUIView} from "../RootViews/DefaultUIView";
+import {ThreadedTensorComponent} from "../Components/ThreadedTensorComponent";
 
 export class DefaultScene extends Phaser.Scene {
 
@@ -23,7 +23,8 @@ export class DefaultScene extends Phaser.Scene {
     create(title: string = ''): void {
         DefaultUIView.call(this);
 
-        this.aiComponent = new AITensorComponent();
+        // this.aiComponent = new TensorComponent();
+        this.aiComponent = new ThreadedTensorComponent();
 
         this.titleText.setText(title);
         this.loader.setVisible(true);

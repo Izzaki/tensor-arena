@@ -18,8 +18,24 @@ export class RocketToBouncingAimScene extends DefaultScene {
 
         RocketAndAimView.call(this);
 
+        const aimBody = this.aim.body as Phaser.Physics.Arcade.Body;
+        aimBody.setGravityY(100);
+        aimBody.setBounceY(1);
+        aimBody.collideWorldBounds = true;
+
+        this.add.tween({
+            duration: 2000,
+            repeat: Infinity,
+            targets: [this.aim],
+            yoyo: true,
+            ease: Phaser.Math.Easing.Sine,
+            props: {
+                x: this.aim.x + 300
+            }
+        });
+
         await this.aiComponent.teach({
-            epochs: 300,
+            epochs: 200,
         }, [
             [360],
             [270],
@@ -51,10 +67,10 @@ export class RocketToBouncingAimScene extends DefaultScene {
         this.time.addEvent({
             loop: true,
             delay: 30,
-            callback: () => {
+            callback: async () => {
                 const angleOffset = this.vehicle.angle - Phaser.Math.RadToDeg(Phaser.Math.Angle.BetweenPoints(this.vehicle, this.aim));
 
-                const outputs = this.aiComponent.predict([[angleOffset]]);
+                const outputs = await this.aiComponent.predict([[angleOffset]]);
                 const predictedAngle = (outputs[0] * 360) - 180;
 
                 const angle = this.vehicle.angle + predictedAngle / 20;
@@ -67,22 +83,6 @@ export class RocketToBouncingAimScene extends DefaultScene {
                     `outputs: ${outputs}`,
                     `angle: ${this.vehicle.angle}`
                 ]);
-            }
-        });
-
-        const aimBody = this.aim.body as Phaser.Physics.Arcade.Body;
-        aimBody.setGravityY(100);
-        aimBody.setBounceY(1);
-        aimBody.collideWorldBounds = true;
-
-        this.add.tween({
-            duration: 2000,
-            repeat: Infinity,
-            targets: [this.aim],
-            yoyo: true,
-            ease: Phaser.Math.Easing.Sine,
-            props: {
-                x: this.aim.x + 300
             }
         });
     }

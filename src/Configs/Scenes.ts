@@ -5,7 +5,7 @@ import {ImageTextRecognizer} from "../Scenes/Scenes/ImageTextRecognizer";
 
 const scenes: Array<IClass<Phaser.Scene>> = [
     RocketToBouncingAimScene,
-    MusicVisualiserScene,
+    // MusicVisualiserScene,
     // ImageTextRecognizer,
 ];
 

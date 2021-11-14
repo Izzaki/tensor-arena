@@ -35,26 +35,14 @@ export class RocketToBouncingAimScene extends DefaultScene {
         });
 
         await this.aiComponent.teach({
-            epochs: 25,
+            epochs: 50,
         }, [
-            [360],
-            [270],
-            [180],
-            [90],
+            [359],
             [0],
-            [-90],
-            [-180],
-            [-270],
-            [-360],
+            [-359],
         ], [
             [0.1],
-            [0.2],
-            [0.3],
-            [0.4],
             [0.5],
-            [0.6],
-            [0.7],
-            [0.8],
             [0.9],
         ]);
         this.hideLoader();

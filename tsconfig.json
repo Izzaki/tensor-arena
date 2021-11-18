@@ -7,7 +7,6 @@
     "emitDecoratorMetadata": true,
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
-    "declaration": true,
     "outDir": "./lib/"
   }
 }

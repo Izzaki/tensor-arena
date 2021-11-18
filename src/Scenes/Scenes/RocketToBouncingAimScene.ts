@@ -1,6 +1,7 @@
 import {DefaultScene} from '../DefaultScene';
 import {Assets, AssetsPaths} from "../../Assets/Assets";
 import {RocketAndAimView} from "../../RootViews/RocketAndAimView";
+import {delayPromise} from "../../Utilities/DelayPromise";
 
 export class RocketToBouncingAimScene extends DefaultScene {
 
@@ -50,28 +51,27 @@ export class RocketToBouncingAimScene extends DefaultScene {
         this.start();
     }
 
-    start(): void {
+    async start(): Promise<any> {
         const vehicleBody = this.vehicle.body as Phaser.Physics.Arcade.Body;
-        this.time.addEvent({
-            loop: true,
-            delay: 30,
-            callback: async () => {
-                const angleOffset = this.vehicle.angle - Phaser.Math.RadToDeg(Phaser.Math.Angle.BetweenPoints(this.vehicle, this.aim));
 
-                const outputs = await this.aiComponent.predict([[angleOffset]]);
-                const predictedAngle = (outputs[0] * 360) - 180;
+        let stopSignal: boolean = false;
+        while(!stopSignal) {
+            const angleOffset = this.vehicle.angle - Phaser.Math.RadToDeg(Phaser.Math.Angle.BetweenPoints(this.vehicle, this.aim));
 
-                const angle = this.vehicle.angle + predictedAngle / 20;
-                this.physics.velocityFromAngle(angle, 300, vehicleBody.velocity);
-                this.vehicle.angle = angle;
+            const outputs = await this.aiComponent.predict([[angleOffset]]);
+            const predictedAngle = (outputs[0] * 360) - 180;
 
-                this.infoText.setText([
-                    // `loss: ${history.history.loss[0]}`,
-                    // `inputs: ${inputs}`,
-                    `outputs: ${outputs}`,
-                    `angle: ${this.vehicle.angle}`
-                ]);
-            }
-        });
+            const angle = this.vehicle.angle + predictedAngle / 20;
+            this.physics.velocityFromAngle(angle, 300, vehicleBody.velocity);
+            this.vehicle.angle = angle;
+
+            this.infoText.setText([
+                // `loss: ${history.history.loss[0]}`,
+                // `inputs: ${inputs}`,
+                `outputs: ${outputs}`,
+                `angle: ${this.vehicle.angle}`
+            ]);
+            await delayPromise(30);
+        }
     }
 }

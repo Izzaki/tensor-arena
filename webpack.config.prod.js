@@ -10,6 +10,7 @@ module.exports = {
 
     output: {
         filename: '[name].js',
+        path: path.resolve('public/'),
     },
 
     module: {
@@ -27,8 +28,7 @@ module.exports = {
         ]
     },
 
-    resolve: {extensions: [".ts", ".js"]},
+    devtool: false,
 
-    devServer: {
-    }
+    resolve: {extensions: [".ts", ".js"]},
 };
